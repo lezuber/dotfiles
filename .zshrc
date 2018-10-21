@@ -1,7 +1,6 @@
 source /usr/local/share/antigen/antigen.zsh
 antigen init .antigenrc
 
-
 DEFAULT_USER=`whoami`
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -20,6 +19,7 @@ export vt='lzuber@rlogin.cs.vt.edu'
 #aliases
 alias l='ls -lah'
 alias ls='ls -GFh'
+alias vim='nvim'
 
 #git aliases
 alias lg='git lg'
