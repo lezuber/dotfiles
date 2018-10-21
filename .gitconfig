@@ -1,0 +1,69 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = Lenz Zuber
+	email = zuberlenz@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = 'nano'
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+  p = push
+  co = checkout
+  ci = commit
+  st = status
+  sh = stash
+  br = branch
+  la = log --graph --branches --remotes --tags --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+  l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' master
+  type = cat-file -t
+  dump = cat-file -p
+  sw = show --name-only
+  plr = pull --rebase
+
+  upd = !git fetch && git fetch --tags && git remote prune origin
+  update = !git fetch && git fetch --tags && git remote prune origin
+
+  ch      = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  changes      = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+
+
+  amend        = commit --amend -C HEAD
+  changes      = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  changelog    = log --pretty=format:\" * %s\"
+  cleanup      = gc --aggressive --prune=now
+  ignore       = update-index --assume-unchanged
+  last         = diff HEAD^                                                                                  # diff last committed change
+  list         = !git log --pretty=format:\"%s\"  origin/master... | cut -d \" \" -f1 | sort | uniq
+  listfiles    = !git diff --name-only  origin/master...
+  now          = branch -r --contains
+  recent       = !git for-each-ref --count=5 --sort=-committerdate refs/heads/ --format='%(refname:short)'   # list latest 5 branches that have changed
+  short        = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+  uncommit     = reset --soft HEAD^
+  unstage      = reset HEAD
+  philipp      = push --force
+  ncommit      = commit --no-gpg-sign
