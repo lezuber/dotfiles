@@ -1,0 +1,4 @@
+#!/bin/zsh
+echo Bundeling Brew backages for commit
+brew bundle dump --force --global
+git add .Brewfile
