@@ -13,6 +13,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tyrannicaltoucan/vim-quantum'
 
+Plug 'tpope/vim-surround' " change surroundings with e.g. csiw
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 " }}}
@@ -29,6 +33,14 @@ set showcmd         " show last command in bottom bar
 set cursorline      " highlight current line
 set termguicolors   " true color support
 set cursorline      " highlight current line
+
+" Relative Line number, only in normal mode 
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 " }}}
 
 " Searching & Folding {{{
@@ -54,8 +66,9 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 " }}}
 
-" Shortcuts {{{
+" Keybindings {{{
 " with this indent lines wont be skipped with j and k 
+let mapleader = ","
 nnoremap j gj
 nnoremap k gk
 " }}}
