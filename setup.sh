@@ -6,7 +6,7 @@ params="-sf"
 script_home="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Symlink all of our dotfiles to the home directory
-for i in .vimrc .dircolors .bashrc .bash_profile .bash_darwin .tmux.conf;
+for i in .antigenrc .gitconfig .gitignore_global .zshrc;
 do
   ln $params $script_home/$i $HOME/$i
 done

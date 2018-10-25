@@ -7,7 +7,7 @@
 " Plug {{{
 " Plugin manager
 " -------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " Declare the list of plugins.
 
 Plug 'itchyny/lightline.vim'

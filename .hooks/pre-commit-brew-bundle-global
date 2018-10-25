@@ -1,10 +1,7 @@
 #!/bin/zsh
 echo Bundeling Brew backages for commit
 
-# Store where the script was called from so we can reference it later
-script_home="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-mv -f $HOME/.Brewfile ../../.Brewfile
+mv -f $HOME/.Brewfile $GIT_DIR/.Brewfile
 
 brew bundle dump --force --global
 git add .Brewfile
