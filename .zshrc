@@ -13,7 +13,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 #vt aliases
-alias sshvt='ssh lzuber@rlogin.cs.vt.edu'
+alias sshvt='ssh lzuber@rlogin.cs.vt.edu -t zsh'
 export vt='lzuber@rlogin.cs.vt.edu'
 
 #aliases

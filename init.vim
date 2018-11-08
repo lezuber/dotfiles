@@ -11,7 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Declare the list of plugins.
 
 Plug 'itchyny/lightline.vim'
-Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'sonph/onehalf', {'rtp': 'vim'}
 
 Plug 'tpope/vim-surround' " change surroundings with e.g. csiw
 Plug 'tpope/vim-commentary'
@@ -26,20 +26,28 @@ Plug 'qpkorr/vim-bufkill'       " dont close window when kill buffer
 Plug 'ryanoasis/vim-devicons'   " Filetype icons
 Plug 'vim-syntastic/syntastic'  " Error checking
 Plug 'Valloric/YouCompleteMe'
+Plug 'ap/vim-css-color'         " Highlight Hex Colors in Code
+Plug 'Raimondi/delimitMate'     " Auto Close Tags in a code aware way
 
 call plug#end()
 " }}}
 
 " Core (e.g. Python) {{{
-let g:python3_host_prog = '/Users/Lenz/.pyenv/versions/neovim3/bin/python'
-let g:python_host_prog = '/Users/Lenz/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/lezuber/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '/Users/lezuber/.pyenv/versions/neovim2/bin/python'
 " }}}
 "
 " Spaces & Tabs {{{
-set tabstop=4       " number of visual spaces per TAB
-set softtabstop=4   " number of spaces in tab when editing
-set expandtab       " tabs are spaces
 set number          " show line numbers
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab       " tabs are spaces
+
 " }}}
 
 " UI Layout {{{
@@ -69,10 +77,8 @@ set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " fold based on indent level
 
-" Netrw setup
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+" Nerdtree config
+let NERDTreeIgnore = ['\.pyc$']
 
 " Wildmenue search for opening files efficient
 set wildmenu
@@ -108,6 +114,8 @@ map <leader><space> za
 nnoremap j gj
 nnoremap k gk
 
+" Scrolling with trackpad in iterm normal mode
+:set mouse=n
 " shorten window switching
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -130,12 +138,57 @@ map <leader>f :NERDTreeToggle<cr>
 " Binding to focus on a window easily
 map <leader>o :tabnew %<CR>
 
+" Toggle Colortheme
+map <leader>tt :call ToggleTheme()<cr>
+
+" Search and replace word under cursor
+nnoremap <leader>r :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              YouCompleteMe                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_extra_conf_globlist = ['~/repos/*']
+let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+let g:ycm_rust_src_path = $HOME . '/repos/rust/src'
+
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>d :YcmCompleter GetDoc<CR>
+
 " }}}
 
 " Colors {{{
-let g:quantum_black=1
-let g:airline_theme='quantum'
-colorscheme quantum
+colorscheme onehalfdark
+let g:lightline = {
+      \ 'colorscheme': 'onehalfdark',
+      \ }
+
+function ToggleTheme()
+	if (g:colors_name == 'onehalfdark')
+		colorscheme onehalflight
+        let g:lightline.colorscheme='onehalflight'
+	else
+		colorscheme onehalfdark
+        let g:lightline.colorscheme='onehalfdark'
+	endif
+endfunction
+
+
+set t_Co=256
+set cursorline
+let g:airline_theme='onehalflight'
+" Truecolor enabler
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 " }}}
 
 " Syntastic {{{
@@ -145,11 +198,11 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 function Py2()
-  let g:syntastic_python_python_exec = '/Users/Lenz/.pyenv/versions/neovim2/bin/python'
+  let g:syntastic_python_python_exec = '/Users/lezuber/.pyenv/versions/neovim2/bin/python'
 endfunction
 
 function Py3()
-  let g:syntastic_python_python_exec = '/Users/Lenz/.pyenv/versions/neovim3/bin/python'
+  let g:syntastic_python_python_exec = '/Users/lezuber/.pyenv/versions/neovim3/bin/python'
 endfunction
 
 call Py2()   " default to Py3 because I try to use it when possible

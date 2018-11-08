@@ -1,7 +1,7 @@
 #!/bin/zsh
 echo Bundeling Brew backages for commit
 
-mv -f $HOME/.Brewfile $GIT_DIR/.Brewfile
-
 brew bundle dump --force --global
-git add .Brewfile
+mv -f $HOME/Brewfile $GIT_DIR/Brewfile
+
+git add Brewfile
