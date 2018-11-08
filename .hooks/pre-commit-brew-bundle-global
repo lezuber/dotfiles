@@ -2,6 +2,6 @@
 echo Bundeling Brew backages for commit
 
 brew bundle dump --force --global
-mv -f $HOME/Brewfile $GIT_DIR/Brewfile
+mv -f $HOME/.Brewfile .Brewfile
 
-git add Brewfile
+git add .Brewfile
