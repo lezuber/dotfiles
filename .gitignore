@@ -1,0 +1,7 @@
+*
+
+!.gitignore
+!.zshrc
+!.config/*
+!.mackup/*
+!.hooks/*

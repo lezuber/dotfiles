@@ -1,3 +1,0 @@
-# On new mashine remember to link the hook into the repo
-chmod +x .hooks/pre-commit-brew-bundle-global
-ln -s -f ../../.hooks/pre-commit-brew-bundle-global .git/hooks/pre-commit

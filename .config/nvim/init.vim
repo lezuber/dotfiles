@@ -11,9 +11,9 @@ call plug#begin('~/.config/nvim/plugged')
 " Declare the list of plugins.
 
 Plug 'itchyny/lightline.vim'
+Plug 'sheerun/vim-polyglot'		" enhanced syntax highlighting
 Plug 'sonph/onehalf', {'rtp': 'vim'}
-
-Plug 'tpope/vim-surround' " change surroundings with e.g. csiw
+Plug 'tpope/vim-surround'       " change surroundings with e.g. csiw
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'       " Add Git Functionality
 Plug 'airblade/vim-gitgutter'   " Show git status of each line left of line number

@@ -1,10 +1,10 @@
 #!/bin/zsh
-echo Bundeling Brew backages for commit
+echo Bundeling Brew packages for commit
 
 brew bundle dump --force --global
 mv -f $HOME/.Brewfile .Brewfile
 
 echo Running Machup
-mackup backup
+mackup -f backup
 
 git add .Brewfile
