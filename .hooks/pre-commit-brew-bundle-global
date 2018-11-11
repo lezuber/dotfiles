@@ -4,4 +4,7 @@ echo Bundeling Brew backages for commit
 brew bundle dump --force --global
 mv -f $HOME/.Brewfile .Brewfile
 
+echo Running Machup
+mackup backup
+
 git add .Brewfile

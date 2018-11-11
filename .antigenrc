@@ -8,9 +8,6 @@
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 
-
-
-antigen bundle Tarrasch/zsh-autoenv
 antigen bundle b4b4r07/enhancd
 antigen bundle git
 antigen bundle heroku
